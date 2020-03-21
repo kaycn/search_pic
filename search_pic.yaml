@@ -1,32 +1,27 @@
 version: '2'
 services:
   web:
-    image: dockercloud/hello-world
+    image: milvusbootcamp/pic-search-webclient:0.1.0
     ports:
-      - 8080
+      - 8001:80
     networks:
       - front-tier
       - back-tier
 
-  redis:
-    image: redis
+  milvus:milvusdb/milvus:0.7.0-cpu-d031120-de409b
+    image: 
     links:
       - web
     networks:
       - back-tier
 
   lb:
-    image: dockercloud/haproxy
-    ports:
-      - 80:80
+    image: milvusbootcamp/pic-search-webserver:0.3.0 
     links:
       - web
     networks:
       - front-tier
       - back-tier
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock 
-
 networks:
   front-tier:
     driver: bridge
