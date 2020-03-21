@@ -8,8 +8,8 @@ services:
       - front-tier
       - back-tier
 
-  milvus:milvusdb/milvus:0.7.0-cpu-d031120-de409b
-    image: 
+  milvus:
+    image: milvusdb/milvus:0.7.0-cpu-d031120-de409b
     links:
       - web
     networks:
